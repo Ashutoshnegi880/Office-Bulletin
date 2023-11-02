@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: #f4f4f4;
+      }
+
+      .post-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+
+      .post-card {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin: 10px;
+        width: 300px;
+      }
+
+      .post-card img {
+        width: 100%;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+      }
+
+      .post-card .post-details {
+        padding: 10px;
+      }
+
+      .post-card h3 {
+        font-size: 1.2em;
+        margin: 0;
+      }
+
+      .post-card p {
+        margin: 8px 0;
+      }
+
+      .post-card .category {
+        font-size: 0.8em;
+        color: #555;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>All Posts</h3>
+
+    <div class="post-container" id="postContainer">
+      <!-- Blog Post Cards will be added here -->
+    </div>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    const token = sessionStorage.token || "my_token";
+    axios({
+      method: "post",
+      url: "http://localhost:80/api/blog/getBlogs",
+      headers: {
+        token: token,
+      },
+      data: {
+        name: "ashu",
+      },
+    }).then((result) => {
+      console.log(result);
+
+      result.data.forEach((post) => {
+        console.log(post.likes)
+        const postCard = document.createElement("div");
+        postCard.classList.add("post-card");
+        postCard.innerHTML = `
+                    <img src="${post.image_url}" alt="${post.title}">
+                    <div class="post-details">
+                        <h6 id='email_${post.post_id}'>${post.userid}</h6>
+                        <h3>${post.title}</h3>
+                        <p>${post.description}</p>
+                        <p class="category">${post.category}</p>
+                        <p>Likes: <span id="likesCount_${post.post_id}">${post.likes}</span></p>
+                        <button onclick="likePost(${post.post_id})">Like</button>
+                        <p id="${post.post_id}" style="display:none">${post.post_id}</p>
+                    </div>
+                `;
+        postContainer.appendChild(postCard);
+      });
+    },
+    ()=>{
+        sessionStorage.removeItem("token");
+        sessionStorage.removeItem("email");
+            alert("Session Expired")
+            window.location.href = "/login"
+    }
+    );
+
+
+    </script>
+  <script src="https://cdn.socket.io/4.6.0/socket.io.min.js"></script>
+  <script src="allposts.js"></script>
+  
+</html>

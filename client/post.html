@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Create Blog Post</title>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+
+        margin: 0;
+
+        padding: 0;
+      }
+
+      .blog-post-form {
+        max-width: 800px;
+
+        margin: 0 auto;
+
+        padding: 20px;
+
+        border: 1px solid #ddd;
+
+        background-color: #fff;
+
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+        margin-top: 55px;
+      }
+
+      h2 {
+        font-size: 24px;
+
+        margin: 0;
+      }
+
+      form {
+        margin-top: 20px;
+      }
+
+      label {
+        display: block;
+
+        margin-top: 10px;
+      }
+
+      input[type="text"],
+      select,
+      textarea {
+        width: 95%;
+
+        padding: 10px;
+
+        margin-top: 5px;
+
+        border: 1px solid #ddd;
+
+        border-radius: 4px;
+      }
+
+      input[type="submit"] {
+        background-color: #007bff;
+
+        color: #fff;
+
+        border: none;
+
+        padding: 10px 20px;
+
+        margin-top: 10px;
+
+        border-radius: 4px;
+
+        cursor: pointer;
+      }
+
+      input[type="submit"]:hover {
+        background-color: #0056b3;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="blog-post-form">
+      <h2>Create a New Blog Post</h2>
+
+      <form>
+        <label for="title">Title:</label>
+
+        <input type="text" id="title" name="title" required />
+
+        <label for="userid">User Email:</label>
+
+        <input type="text" id="userid" name="userid" readonly required />
+
+        <label for="category">Category:</label>
+
+        <select id="category" name="category">
+          <option value="sports">Sports</option>
+
+          <option value="entertainment">Entertainment</option>
+
+          <option value="politics">Politics</option>
+
+          <option value="travel">Travel</option>
+
+        </select>
+
+        <label for="image_url">Image URL:</label>
+
+        <!-- <input type="text" id="image_url" name="image_url" /> -->
+        <input type="file" id="image" name="image" accept="image/*" required />
+
+        <label for="description">Description:</label>
+
+        <textarea id="description" name="description" required></textarea>
+
+        <!-- <button type="button" onclick="createPost()">Submit</button> -->
+        <button type="button" onclick="createPost2()">Submit</button>
+      </form>
+    </div>
+
+    <script>
+      var userid = window.sessionStorage.email;
+      document.getElementById("userid").value = userid;
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+      function createPost() {
+        // Get form values
+        var title = document.getElementById("title").value;
+        var userid = document.getElementById("userid").value;
+        var category = document.getElementById("category").value;
+        var image_url = document.getElementById("image_url").value;
+        var description = document.getElementById("description").value;
+
+        // Prepare the request payload
+        var payload = {
+          title: title,
+          userid: userid,
+          category: category,
+          image_url: image_url,
+          description: description,
+        };
+        const token = sessionStorage.token || "my_token";
+        // Make the POST request
+        axios({
+          method: "post",
+          url: "http://localhost/api/blog/post",
+          data: payload,
+          headers: {
+            token: token,
+          },
+        })
+          .then(function (response) { 
+            console.log("Post created successfully:", response.data);
+          })
+          .catch(function (error) {
+            console.error("Error creating post:", error);
+          });
+      }
+    
+      function createPost2() {
+        // Get form values
+        var title = document.getElementById("title").value;
+        var userid = document.getElementById("userid").value;
+        var category = document.getElementById("category").value;
+        const image = document.getElementById('image').files[0];
+        var description = document.getElementById("description").value;
+
+        // Prepare the request payload
+        const formData = new FormData();
+        formData.append("title", title);
+        formData.append("userid", userid);
+        formData.append("category", category);
+        formData.append("image", image);
+        formData.append("description", description);
+
+
+        const token = sessionStorage.token || "my_token";
+        // Make the POST request
+        axios({
+          method: "post",
+          url: "http://localhost/api/blog/postUploadImage",
+          data: formData,
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            token: token,
+          },
+        })
+          .then(function (response) { 
+            console.log("Post created successfully:", response.data);
+          })
+          .catch(function (error) {
+            console.error("Error creating post:", error);
+          });
+      }
+    
+    </script>
+  </body>
+</html>

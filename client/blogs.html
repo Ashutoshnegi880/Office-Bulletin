@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Blog Page</title>
+  </head>
+  <body>
+    <h1>Welcome to the Blog Page</h1>
+
+    <button onclick="createPost()">Create Post</button>
+    <button onclick="viewAllPosts()">View All Posts</button>
+    <button onclick="myPosts()">View My Posts</button>
+    <button onclick="joinChat()">Chat with Active Users</button>
+
+    <script>
+      function createPost() {
+        // Redirect to create post page
+        window.location.href = "http://localhost:80/post";
+      }
+
+      function viewAllPosts() {
+        // Redirect to view all posts page
+        window.location.href = "http://localhost:80/allposts";
+      }
+      function myPosts() {
+        // Redirect to view all posts page
+        window.location.href = "http://localhost:80/myposts";
+      }
+      function joinChat() {
+        // Redirect to view all posts page
+        window.location.href = "http://localhost:80/chat";
+      }
+    </script>
+  </body>
+</html>

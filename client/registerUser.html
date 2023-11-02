@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>Login Page</title>
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      .otp-input {
+        text-align: center;
+        margin: 10px;
+        width: 40px;
+      }
+
+      #resendOtpBtn {
+        text-decoration: underline;
+      }
+
+      .card {
+        width: 400px;
+      }
+
+      .navbar{
+        padding: 5px;
+    }
+    .navbar h4{
+        color: white;
+    }
+    </style>
+  </head>
+  <body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+      <a class="navbar-brand" href="/"><h4><b>Office Bulletin</b></h4></a>
+  </nav>
+    <div class="container mt-5">
+      <div class="row justify-content-center">
+        <div class="col-md-4.5">
+          <div class="card">
+            <div class="card-body">
+              <form id="emailPasswordSection">
+                <!-- <div id="emailPasswordSection"> -->
+                  <h5 class="card-title text-center">Register New User</h5>
+                  <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input
+                      type="email"
+                      class="form-control"
+                      id="email"
+                      placeholder="Enter email"
+                      required
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="password">Password</label>
+                    <input
+                      type="password"
+                      class="form-control"
+                      pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                      title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+                      id="password"
+                      placeholder="Password" required
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    id="otpBtn"
+                    class="btn btn-primary btn-block"
+                  >
+                    Register
+                  </button>
+                  <a href="login" >
+                    <button style="margin-top: 5px;" type="button" class="btn btn-link text-primary btn-block" id="reset-pass-button">Already Registered? Login here</button>
+                  </a>
+                <!-- </div> -->
+              </form>
+
+              <form id="otpSection" style="display: none">
+                <!-- <div id="otpSection" style="display: none"> -->
+                  <h5 class="card-title text-center">
+                    Please enter the one time password to verify your account
+                  </h5>
+                  <p class="card-title text-center">
+                    A Otp is sent to your email
+                  </p>
+                  <div class="form-group">
+                    <div class="form-group d-flex justify-content-center">
+                      <input
+                        type="text"
+                        class="form-control otp-input"
+                        id="otp1"
+                        maxlength="1"
+                        pattern="\d"
+                        oninput="moveToNextInput(event, 'otp2')"
+                      />
+                      <input
+                        type="text"
+                        class="form-control otp-input"
+                        id="otp2"
+                        maxlength="1"
+                        pattern="\d"
+                        oninput="moveToNextInput(event, 'otp3')"
+                        onkeydown="moveToPreviousInput(event, 'otp1')"
+                      />
+                      <input
+                        type="text"
+                        class="form-control otp-input"
+                        id="otp3"
+                        maxlength="1"
+                        pattern="\d"
+                        oninput="moveToNextInput(event, 'otp4')"
+                        onkeydown="moveToPreviousInput(event, 'otp2')"
+                      />
+                      <input
+                        type="text"
+                        class="form-control otp-input"
+                        id="otp4"
+                        maxlength="1"
+                        pattern="\d"
+                        onkeydown="moveToPreviousInput(event, 'otp3')"
+                      />
+                    </div>
+                  </div>
+                  <button
+                    type="button"
+                    id="submitOtpBtn"
+                    class="btn btn-primary btn-block"
+                    onclick="submitOtp()"
+                  >
+                    Submit OTP
+                  </button>
+                  <button
+                    type="button"
+                    id="resendOtpBtn"
+                    class="btn btn-link text-primary btn-block"
+                    onclick="resend()"
+                  >
+                    Resend OTP
+                  </button>
+                <!-- </div> -->
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="registerUser.js"></script>
+  </body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Login Page</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<style>
+    .card{
+        border-radius: 8px;
+        margin-top: 30px;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    }
+
+    .navbar{
+        padding: 5px;
+    }
+    .navbar h4{
+        color: white;
+    }
+</style>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+        <a class="navbar-brand" href="/"><h4><b>Office Bulletin</b></h4></a>
+    </nav>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Stay connected with your office colleagues</h5>
+                        <p class="text-center"><i>Share info and chat across the organization</i></p>
+                        <form>
+                            <a href="login"><button type="button" class="btn btn-primary btn-block">Login</button></a>
+                            <p class="text-center" style=" margin: 7px 7px;">or</p>
+                            <a href="registerUser"><button type="button" class="btn btn-primary btn-block">Signup</button></a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <img src="https://envisage.nz/wp-content/uploads/2020/09/web-design-hero1.png" alt="Image" class="img-fluid">
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        if(window.sessionStorage.token){
+            axios({
+                method: "post",
+                url: "http://localhost:80/verifyToken",
+                headers:{
+                    token:window.sessionStorage.token
+                }
+            }).then(
+                (result)=>{
+                    if(result.data){
+                        window.location.href = '/login'
+                    }
+                }
+            ) 
+        }
+    </script>
+</body>
+</html>

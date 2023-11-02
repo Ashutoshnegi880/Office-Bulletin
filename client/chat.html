@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chats</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            margin-top: 20px;
+        }
+
+        #active-users {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        button {
+            margin: 5px;
+            padding: 5px 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .chat-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .chat-box {
+            width: 100%;
+            max-height: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            overflow-y: auto;
+            margin-bottom: 10px;
+        }
+
+        .message {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 10px;
+            word-wrap: break-word;
+            max-width: 80%;
+        }
+
+        .sent {
+            align-self: flex-end;
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .received {
+            align-self: flex-start;
+            background-color: #f0f0f0;
+        }
+
+        .input-box {
+            width: 100%;
+            max-width: 600px;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .input-box input {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            margin-right: 10px;
+        }
+
+        .input-box button {
+            flex-shrink: 0;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .input-box button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Chat With Active Users</h1>
+    <div id="active-users">
+        <button type="button" onclick="selectedUser('ripul@gmail.com')" id="ripul@gmail.com">ripul@gmail.com</button>
+        <button type="button" onclick="selectedUser('ajay@gmail.com')" id="ajay@gmail.com">ajay@gmail.com</button>
+        <button type="button" onclick="selectedUser('ashu@gmail.com')" id="ashu@gmail.com">ashu@gmail.com<br></button>
+    </div>
+    <br>
+    <div class="chat-container">
+        <p id="sendTo"></p>
+        <div class="chat-box" id="chat-box">
+        </div>
+        <div class="input-box">
+            <input type="text" id="message" placeholder="Type a message...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.socket.io/4.6.0/socket.io.min.js"></script>
+    <script src="chat.js"></script>
+</body>
+
+</html>

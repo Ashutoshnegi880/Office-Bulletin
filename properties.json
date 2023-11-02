@@ -1,0 +1,8 @@
+{
+    "PORT": "80",
+    "pg_user": "postgres",
+    "pg_host": "localhost",
+    "pg_database": "Node-Training",
+    "pg_password": "Manchester@072002",
+    "pg_port": 5432
+}

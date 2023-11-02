@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Home Page</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css'>
+  <link rel="stylesheet" href="home.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand-md navbar-dark bg-primary navbar-fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand fw-bold" href="/">Office Bulletin</a>
+        <!-- <ul class="navbar-nav sm-icons"> -->
+          <div id="lefticon">
+            <a class="nav-link"><i class="fa-solid fa-user" style="color: #ffffff;"></i></a><span id="userNameSpan"
+                style="color: white; cursor: pointer; margin-right: 0.7rem">USERNAME</span>
+                <span id="logout" style="margin-right: 1rem"> <i class="fa-solid fa-right-from-bracket" style="color: #ffffff;"></i></span>
+            </div>
+        <!-- </ul> -->
+    </div>
+    </div>
+</nav>
+
+  <br>
+  <div class="container-fluid">
+    <div class="wrapper row">
+      <nav class="col-md-2">
+
+        <div class=" sidebar d-flex flex-column flex-shrink-0 p-3 bg-light">
+          <h4>Navigate</h4>
+          <button onclick="viewAllPosts()">View All Posts</button>
+          <button onclick="myPosts()">View My Posts</button>
+          <button onclick="createPostBox()">Create Post</button>
+        </div>
+      </nav>
+
+      <div class="col-sm-7 posts" style="background-color: rgb(250, 250, 250)">
+        <div class="blog-post-form" id="create-post-form" style="display: none">
+          <div class="create-posts">
+            <div class="blog-post-form">
+              <h2>Create a New Blog Post</h2>
+
+              <form id="create-post-form">
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="title" required />
+
+                <label for="userid">User Email:</label>
+                <input type="text" id="userid" name="userid" readonly required />
+
+                <label for="category">Category:</label>
+                <select id="category" name="category">
+                  <option value="sports">Sports</option>
+                  <option value="entertainment">Entertainment</option>
+                  <option value="politics">Politics</option>
+                  <option value="travel">Travel</option>
+                </select>
+
+                <label for="image_url">Image:</label>
+                <input type="file" id="image" name="image" accept="image/*" required />
+
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" required></textarea>
+
+                <button type="submit">Submit</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <h4 style="text-align: center; margin-top: 2px;">Posts</h4>
+        <div class="post-container" id="postContainer">
+
+          <!-- Blog Post Cards will be added here -->
+        </div>
+      </div>
+
+      <div class="col-md-3  ">
+        <div class="sidebar d-flex flex-column flex-shrink-0 p-3 bg-light">
+          <h4 style="text-align: center">Active Users</h4>
+          <div id="active-users" class="active-user-flex">
+            <button type="button" onclick="selectedUser('ripul@gmail.com')" id="ripul@gmail.com">
+              ripul@gmail.com
+            </button>
+            <button type="button" onclick="selectedUser('ajay@gmail.com')" id="ajay@gmail.com">
+              ajay@gmail.com
+            </button>
+            <button type="button" onclick="selectedUser('ashu@gmail.com')" id="ashu@gmail.com">
+              ashu@gmail.com<br />
+            </button>
+          </div>
+        </div>
+        
+        <div class="chat-container" id="chat-container-div" style="display: none; padding: 7px;">
+          <div style="display: flex; justify-content: space-between;">
+            <span id="sendTo"></span><span style=" cursor: pointer;"
+              onclick="closeChatContainer()">X</span>
+          </div>
+          <div class="chat-box" id="chat-box"></div>
+          <div class="input-box">
+            <input type="text" id="message" placeholder="Type a message...">
+            <button onclick="sendMessage()">Send</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  
+
+  <div class="container">
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog " role="document">
+        <div class="modal-content">
+          <div class="modal-body" id="modal-inner-text">
+            ...
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+  <script src="https://cdn.socket.io/4.6.0/socket.io.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+  <script src="home.js"></script>
+</body>
+</html>

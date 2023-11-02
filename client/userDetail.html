@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>User Profile</title>
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      #reset-pass-button {
+        text-decoration: underline;
+      }
+
+      .navbar {
+        padding: 5px;
+      }
+
+      .navbar h4 {
+        color: white;
+      }
+    </style>
+  </head>
+  <body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+      <a class="navbar-brand" href="/"><h4><b>Office Bulletin</b></h4></a>
+    </nav>
+    <div class="container mt-5">
+      <div class="row justify-content-center">
+        <div class="col-md-5">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title text-center">Complete your profile</h5>
+              <form id="userDetailsForm" style="display: none;">
+                <div class="form-group">
+                  <label for="name">Full Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="name"
+                    placeholder="Enter your full name"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="age">Age</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="age"
+                    placeholder="Enter your age"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="dob">Date of Birth</label>
+                  <input
+                    type="date"
+                    class="form-control"
+                    id="dob"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="bloodgroup">Blood Group</label>
+                  <select class="form-select" id="bloodgroup" required>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB-</option>
+                    <option value="O+">O+</option>
+                    <option value="O-">O-</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="experience">Experience (in years)</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="experience"
+                    placeholder="Enter your experience"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="maxqualification">Max Qualification</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="maxqualification"
+                    placeholder="Enter your max qualification"
+                    required
+                  />
+                </div>
+                <button
+                  type="submit"
+                  class="btn btn-primary btn-block"
+                >
+                  Submit Details
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="userDetail.js"></script>
+    
+  </body>
+</html>
